@@ -115,7 +115,7 @@ const cancellableSleep = (timeoutMs: number, abortSignal?: AbortSignal) => {
 		sleepPromiseResolveFn = resolve;
 		timeoutId = setTimeout(resolve, timeoutMs);
 	});
-	abortSignal?.addEventListener('abort', function cancelSleep(event) {
+	abortSignal?.addEventListener('abort', function cancelSleep() {
 		clearTimeout(timeoutId);
 		abortSignal?.removeEventListener('abort', cancelSleep);
 		sleepPromiseResolveFn();
